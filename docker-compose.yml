@@ -1,0 +1,14 @@
+# version: '3.2'
+
+# services:
+#   desafio.nestjs:
+#     container_name: desafio.nestjs
+#     build:
+#       context: .
+#       dockerfile: ./dockerfile
+#     volumes:
+#       - ./:/home/node/app
+#     ports:
+#       - '3003:3003'
+    
+    
