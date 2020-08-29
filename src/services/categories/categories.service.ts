@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import {CreateCategoryDto} from '../../dto/category.dto';
 
 @Injectable()
 export class CategoryService {
 
-  createCategory(): string {
-    return "<h1>A new category has been created</h1>";
+  createCategory(categoryDto: CreateCategoryDto): string {
+    return `<h1>A new category, named ${categoryDto.name}, has been created</h1>`;
   }
 
   getCategories(name, id):string {

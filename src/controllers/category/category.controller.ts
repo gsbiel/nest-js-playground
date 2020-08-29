@@ -1,5 +1,6 @@
-import { Controller, Get, Req, Post, Param, Body, Query } from '@nestjs/common';
-import {CategoryService} from '../../services/categories/categories.service'
+import {Controller, Get, Post, Body, Query, HttpException, HttpService, HttpStatus} from '@nestjs/common';
+import {CategoryService} from '../../services/categories/categories.service';
+import {CreateCategoryDto} from '../../dto/category.dto';
 
 // Create an endpoint: /category
 @Controller('categories')
@@ -8,8 +9,14 @@ export class CategoryController {
 
     // StatusCode: 201 by default
     @Post()
-    createCategory(@Body() createCategoryDto: string):string{
-        return this.categoryService.createCategory()
+    createCategory(@Body() createCategoryDto: CreateCategoryDto):string{
+        if(createCategoryDto.name){
+            return this.categoryService.createCategory(createCategoryDto) 
+        }
+        throw new HttpException({
+            status: HttpStatus.BAD_REQUEST,
+            error: `Parâmetro "name" não encontrado no corpo da requisição.`
+        }, HttpStatus.BAD_REQUEST);
     }
 
     @Get()
