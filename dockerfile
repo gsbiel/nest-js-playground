@@ -1,10 +1,14 @@
-# FROM node:latest
+FROM node:12.14.0-alpine3.11
 
-# WORKDIR /home/node/app
+WORKDIR /home/node/app
 
-# COPY ./package*.json ./
+COPY ./package*.json ./
 
-# RUN npm install
+RUN npm install --only=prod
 
-# EXPOSE 3003
-# CMD ["npm","start"]
+COPY ./dist ./dist
+COPY ./database.sql ./
+
+EXPOSE 3000
+
+CMD ["npm","run","start:prod"]
