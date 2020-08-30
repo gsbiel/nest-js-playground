@@ -6,13 +6,8 @@ import {CategoryController} from './controllers/category/category.controller';
 import {Category} from './entities/category.entity';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type: 'sqlite',
-    database: '../database.sql',
-    entities: [Category],
-    synchronize: true,
-  })],
+  imports: [TypeOrmModule.forFeature([Category])],
   providers: [CategoryService],
-  controllers: [CategoryController]
+  controllers: [CategoryController],
 })
-export class CategoryModule {}
+export class CategoryModule{}
