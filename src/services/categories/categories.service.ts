@@ -1,8 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
+import {Repository} from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 import {CreateCategoryDto} from '../../dto/category.dto';
+import {K} from '../../constants';
+import { Category } from 'src/entities/category.entity';
 
 @Injectable()
 export class CategoryService {
+    constructor(
+       @InjectRepository(Category)
+       private categoriesRepository: Repository<Category>
+    ){}
 
   createCategory(categoryDto: CreateCategoryDto): string {
     return `<h1>A new category, named ${categoryDto.name}, has been created</h1>`;
