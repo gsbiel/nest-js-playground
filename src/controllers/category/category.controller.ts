@@ -9,7 +9,7 @@ export class CategoryController {
 
     // StatusCode: 201 by default
     @Post()
-    createCategory(@Body() createCategoryDto: CreateCategoryDto):string{
+    createCategory(@Body() createCategoryDto: CreateCategoryDto){
         if(createCategoryDto.name){
             return this.categoryService.createCategory(createCategoryDto) 
         }
@@ -20,8 +20,8 @@ export class CategoryController {
     }
 
     @Get()
-    getCategories(@Query('name') name, @Query('id') id):string{
-        return this.categoryService.getCategories(name, id);
+    getCategories(@Query('name') name, @Query('id') id){
+        return this.categoryService.findAllCategories();
     }
 
 }

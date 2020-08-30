@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm'
+import {Connection} from 'typeorm';
 import {Category} from './entities/category.entity';
 import { AppController } from './controllers/app/app.controller';
 import { AppService } from './services/app/app.service';
@@ -21,5 +22,5 @@ import {CategoryModule} from './category.module';
   providers: [AppService],
 })
 export class AppModule {
-  // constructor(private connection: Connection) {}
+  constructor(private connection: Connection) {}
 }
